@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="island-core" />
+        <module name="island-admin" />
+        <module name="island-discusspost" />
+        <module name="island-api" />
+        <module name="island-comment" />
+        <module name="island-gateway" />
+        <module name="island-user" />
+        <module name="island-eureka" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="island-consumer" target="8" />
+      <module name="island-provider-home" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

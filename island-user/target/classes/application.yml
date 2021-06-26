@@ -1,0 +1,61 @@
+server:
+  port: 81
+  servlet:
+    context-path: /community
+
+# Mybatis配置信息
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.island.community.entity
+  configuration:
+    use-generated-keys: true
+    map-underscore-to-camel-case: true
+
+spring:
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    cache: false
+  # 数据库信息
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://cdb-456ka4jx.gz.tencentcdb.com:10037/Community?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&currentSchema=db_user
+    username: root
+    password: ll26427833
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 15
+      minimum-idle: 5
+      idle-timeout: 30000
+  # 邮件配置
+  mail:
+    host: smtp.sina.com
+    port: 465
+    username: islandcommunity@sina.com
+    password: 046b934edded3ec3
+    protocol: smtps
+    properties:
+      mail:
+        ssl:
+          enable:
+            true
+  # 服务名
+  application:
+    name: island-user
+
+community:
+  path:
+    domain:
+      http://localhost:8080
+    upload:
+      /Users/lijiale/Desktop/springboot/community/data
+
+# eureka client配置
+eureka:
+  client:
+    service-url:
+      # 服务提供方即Eureka Client注册的Eureka Server端的地址
+      defaultZone: http://eureka:7001/eureka
+  instance:
+    instance-id: island-user # 设置服务实例id
+    prefer-ip-address: true # 通过ip代指域名信息

@@ -1,0 +1,13 @@
+#Eureka Server端口
+server:
+  port: 7001
+
+eureka:
+  instance: # Eureka实例
+    hostname: eureka #Eureka实例所在主机名称
+  client:
+    register-with-eureka: false # 不注册到eureka
+    fetch-registry: false # 不获取注册信息
+  server:
+    enable-self-preservation: false # 关闭自我保护机制
+    eviction-interval-timer-in-ms: 1000 # 清理时间1s

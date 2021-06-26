@@ -1,0 +1,48 @@
+server:
+  port: 9501
+
+spring:
+  application:
+    name: island-gateway
+
+# Zuul配置
+zuul:
+  sensitive-headers: Cookie, Set-Cookie # 全局忽略
+  routes: # 路由
+    article-route:
+      service-id: island-core
+      path: /core-proxy/**
+      url: http://localhost:8080/ # 指定路由，此时ribbon失效
+      sensitive-headers: Cookie, Set-Cookie # 客户端请求头带有此信息时，将不会转发给下级服务
+  ignored-services: "*" # 忽略所有服务
+  prefix: /zuul-api # 配置路由地址前缀
+
+
+ribbon:
+  eureka:
+    enabled: false # 为ribbon禁用eureka
+
+provider-article: # 脱离Eureka使用Ribbon，此处PROVIDER-ARTICLE与Eureka无关，可自定义
+  ribbon:
+    listOfServers: http://localhost:8080
+
+
+# eureka client配置
+eureka:
+  client:
+    service-url:
+      # 服务提供方即Eureka Client注册的Eureka Server端的地址
+      defaultZone: http://eureka:7001/eureka
+  instance:
+    instance-id: zuul-gateway # 设置服务实例id
+    prefer-ip-address: true # 通过ip代指域名信息
+    hostname: zuul # 主机名称
+
+# 权限设置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
